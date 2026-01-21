@@ -1,0 +1,19 @@
+{
+  "name": "pr-rule",
+  "version": "1.0.0",
+  "description": "Rule based PR processing API",
+  "main": "index.js",
+
+  "dependencies": {
+    "express": "^4.18.2",
+    "nodemon": "3.1.11"
+  },
+  "scripts": {
+    "start": "nodemon index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Midhun <midhunsriram@gmail.com>",
+  "license": "ISC"
+}

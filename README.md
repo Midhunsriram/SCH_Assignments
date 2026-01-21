@@ -1,1 +1,3 @@
-# SCH_Assignemts_NodeJS
+# SCH_Assignemts
+
+Details about the projects and execution steps will be updated ASAP.
