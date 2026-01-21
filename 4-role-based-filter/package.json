@@ -1,0 +1,21 @@
+{
+  "name": "role-based-filter",
+  "version": "1.0.0",
+  "description": "Permission based PR filtering API",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon src/app.js",
+    "dev": "nodemon src/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.1",
+    "express": "^4.22.1",
+    "ioredis": "^5.9.2",
+    "mongoose": "^8.21.0",
+    "nodemon": "^3.0.3"
+  },
+  "keywords": [],
+  "author": "Midhun <midhunsriram@gmail.com>",
+  "license": "ISC"
+}
