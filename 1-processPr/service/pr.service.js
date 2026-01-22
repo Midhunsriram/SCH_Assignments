@@ -4,6 +4,8 @@ const processPR = (req, res) => {
     // Rule 1: Auto approve if amount < 10000
     if (pr.totalAmount < 10000) {
       pr.status = "Approved";
+    } else {
+      pr.approvalStatus = "Waiting for mannual approval";
     }
   
     // Rule 2: High urgency if delivery days < 3
