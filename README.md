@@ -76,7 +76,14 @@ npm start
 
 # Postman Curl:
 curl --location 'http://localhost:3003/api/getPRs' \
---header 'x-user-role: buyer'
+--header 'Content-Type: application/json' \
+--data '{
+  "role": "buyer",
+  "dataPermissions": {
+    "allowedPlants": ["PlantA", "PlantB"],
+    "maxAmount": 50000
+  }
+}'
 --------------------------------------------------------------------------------------------------------------------------------------------------
 
 # Assignment 5 – Agent Orchestration (Python)

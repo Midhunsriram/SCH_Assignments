@@ -1,31 +1,31 @@
 const PR = require("../models/pr.models");
 const redis = require("../config/redis");
-const permissions = require("../config/permission.json");
 
-exports.getPRs = async (req, res) => {
-  try {
-    const cacheKey = "buyer_permissions";
+const getPRs = async (req, reply) => {
+  const { role, dataPermissions } = req.body;
+  const { allowedPlants, maxAmount } = dataPermissions;
 
-    let permissionData = await redis.get(cacheKey);
+  const cacheKey = `permissions_${role}`;
 
-    if (!permissionData) {
-      permissionData = JSON.stringify(permissions.dataPermissions);
-      await redis.set(cacheKey, permissionData);
-    }
+  // 1. Cache permissions in Redis
+  const cachedPermissions = await redis.get(cacheKey);
 
-    const { allowedPlants, maxAmount } = JSON.parse(permissionData);
-
-    const prs = await PR.find({
-      plant: { $in: allowedPlants },
-      totalAmount: { $lte: maxAmount }
-    });
-
-    res.json({
-      role: permissions.role,
-      count: prs.length,
-      data: prs
-    });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
+  if (!cachedPermissions) {
+    await redis.set(cacheKey, JSON.stringify(dataPermissions));
   }
+
+  // 2. Query MongoDB with permission filters
+  const prs = await PR.find({
+    plant: { $in: allowedPlants },
+    totalAmount: { $lte: maxAmount }
+  });
+
+  // 3. Send response
+  reply.send({
+    role,
+    count: prs.length,
+    data: prs
+  });
 };
+
+module.exports = { getPRs };
