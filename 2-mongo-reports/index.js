@@ -12,6 +12,6 @@ mongoose.connect("mongodb://127.0.0.1:27017/procurement")
 const reportRoutes = require("./route/report.route");
 app.use("/api", reportRoutes);
 
-app.listen(3000, () => {
-  console.log("Server running on port 3000");
+app.listen(3001, () => {
+  console.log("Server running on port 3001");
 });
